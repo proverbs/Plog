@@ -1,0 +1,8 @@
+# SQLite databases
+*.sqlite
+
+# SQLite migrate
+migrations
+
+# Virtual environment
+venv
