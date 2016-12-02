@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head for all views-->
+<head>
+	{% block title %}
+		<title>{{ plog_info.title }}</title>
+	{% endblock %}
+	<meta charset="utf-8">
+	<meta name="Proverbs" content="www.proverbs.top">
+	<link href="{{ url_for('static', filename='css/reset.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/login-style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+	<!-- for all visitors -->
+	<header>
+		<div class="wrapper">
+			<a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" class="h_logo" alt="Plog" title=""></a>
+			<nav>
+				<ul class="main_nav">
+					{% if highlight == 'Home' %}
+						<li class="current"><a href="{{ url_for('main.index') }}">Home</a></li>
+					{% else %}
+						<li><a href="{{ url_for('main.index') }}">Home</a></li>
+					{% endif %}
+
+					{% if highlight == 'Article' %}
+						<li class="current"><a href="{{ url_for('main.article') }}">Article</a></li>
+					{% else %}
+						<li><a href="{{ url_for('main.article') }}">Article</a></li>
+					{% endif %}
+
+					{% if highlight == 'About' %}
+						<li class="current"><a href="{{ url_for('main.about') }}">About</a></li>
+					{% else %}
+						<li><a href="{{ url_for('main.about') }}">About</a></li>
+					{% endif %}
+					<!-- after login, it should be for user, not visitor-->
+					{% if current_user.is_authenticated %}
+						<li><a href="{{ url_for('user.user_index') }}">Dashboard</a></li>
+					{% else %}
+						{% if highlight == 'Login' %}
+							<li class="current"><a href="{{ url_for('main.login') }}">Login</a></li>
+						{% else %}
+							<li><a href="{{ url_for('main.login') }}">Login</a></li>
+						{% endif %}
+					{% endif %}
+				</ul>
+			</nav>
+		</div>
+	</header><!-- Header End -->
+
+
+	{% block content %}
+	{% endblock %}
+
+
+	<!-- for all visitors -->
+	<footer>
+		<div class="wrapper">
+			<!-- dashboard -->
+			<img class="logo_footer" src="{{ url_for('static', filename='img/logo_footer.png') }}" alt="Blogin" title="">
+			<p class="rights">Plog by Proverbs<a href="http://www.proverbs.top" target="_blink">Proverbs.top</a> </p>
+			<ul class="social_profiles">
+				<li class="f"><a href="http://facebook.com/proverbs" target="_blink"></a></li>
+				<li class="t"><a href="http://twitter.com/proverbs" target="_blink"></a></li>
+				<li class="be"><a href="http://behance.net/proverbs" target="_blink"></a></li>
+				<li class="d"><a href="http://dribbble.com/proverbs" target="_blink"></a></li>
+			</ul>
+		</div>
+	</footer><!-- Footer End -->
+
+</body>

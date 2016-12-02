@@ -1,5 +1,12 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from . import db
+from . import login_manager
+from flask.ext.login import UserMixin
+
+@login_manager.user_loader
+def load_user(user_id):
+	return User.query.get(int(user_id))
 
 
 class Article(db.Model):
@@ -16,7 +23,7 @@ class Article(db.Model):
 	update_time = db.Column(db.DateTime, index = True, default = datetime.utcnow)
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key = True)
 	email = db.Column(db.String(64), unique = True)
@@ -25,7 +32,18 @@ class User(db.Model):
 	avatar_hash = db.Column(db.String(32))
 
 	#'Article' is class name, 'articles' is attibute
-	relationship_articles = db.relationship('Article', backref = 'articles_user', lazy = 'dynamic')
+	user_articles = db.relationship('Article', backref = 'article_user', lazy = 'dynamic')
+
+	@property
+	def password(self):
+		raise AttributeError('password is not a readable attribute')
+
+	@password.setter
+	def password(self, password):
+		self.password_hash = generate_password_hash(password)
+
+	def verify_password(self, password):
+		return check_password_hash(self.password_hash, password)
 
 
 class Tag(db.Model):
@@ -33,7 +51,7 @@ class Tag(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	tag_name = db.Column(db.String(64), unique = True)
 
-	relationship_tags = db.relationship('Article', backref = 'articles_tag', lazy = 'dynamic')
+	tag_articles = db.relationship('Article', backref = 'article_tag', lazy = 'dynamic')
 
 
 class Menu(db.Model):
@@ -41,7 +59,7 @@ class Menu(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	menu_name = db.Column(db.String(64), unique = True)
 
-	relationship_menus = db.relationship('Article', backref = 'articles_menu', lazy = 'dynamic')
+	menu_articles = db.relationship('Article', backref = 'article_menu', lazy = 'dynamic')
 
 
 class PlogInfo(db.Model):
