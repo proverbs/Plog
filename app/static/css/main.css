@@ -2,17 +2,17 @@
 
 	Template Author : pixelhint.com
 	Author Email    : contact@pixelhint.com
-	
-	
+
+
 	*****************************************
-	
-	
+
+
 	- Header
 	- Main Section
 	- Sidebar & widgets
 	- Pagination
 	- Footer
-	
+
 */
 
 
@@ -53,7 +53,7 @@
 header{
 	width: 100%;
 	height: 126px;
-	background-color: #292929; 
+	background-color: #292929;
 	border-bottom: 4px #1e1e1e solid;
 }
 
@@ -67,7 +67,7 @@ header nav{
 	float: right;
 }
 
-ul.main_nav{	
+ul.main_nav{
 	font-family: 'LatoBold', 'Helvetica', arial;
 	margin-right: -1px;
 	font-weight: bold;
@@ -94,12 +94,12 @@ ul.main_nav li a{
 }
 
 ul.main_nav li:first-child a{
-	border-left: 1px #1e1e1e solid; 
+	border-left: 1px #1e1e1e solid;
 }
 
 ul.main_nav li.current a{
 	color: #58c93a;
-	box-shadow: 0 4px 0 #58c93a; 
+	box-shadow: 0 4px 0 #58c93a;
 }
 
 ul.main_nav li a:hover{
@@ -123,7 +123,7 @@ ul.main_nav li a:hover{
 
 .main .article_image,
 .main .post{
-	float: left; 
+	float: left;
 }
 
 .main .article_image{
@@ -158,8 +158,8 @@ ul.main_nav li a:hover{
 	color: #58c93a;
 }
 
-.main .post p,	
-.main2 .post p{	
+.main .post p,
+.main2 .post p{
 	font-family: 'LatoRegular', 'Helvetica', arial;
 	font-size: 16px;
 	color: #606060;
@@ -344,15 +344,15 @@ aside .textwidget p{
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #b9b9b9;  
+   color: #b9b9b9;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #b9b9b9;  
+   color: #b9b9b9;
 }
 
-:-ms-input-placeholder {  
-   color: #b9b9b9;  
+:-ms-input-placeholder {
+   color: #b9b9b9;
 }
 
 /*  pagination  */
@@ -412,7 +412,7 @@ aside .textwidget p{
 }
 .previous:hover i,
 .next:hover i{
-	background: url('../img/pagination_hover.png') no-repeat; 
+	background: url('../img/pagination_hover.png') no-repeat;
 }
 
 .previous:hover i{
@@ -468,7 +468,7 @@ footer ul.social_profiles li{
 footer ul.social_profiles li a{
 	width: 40px;
 	height: 40px;
-	margin-right: 16px; 
+	margin-right: 16px;
 	display: inline-block;
 	background: url('../img/sp.png') no-repeat;
 }
@@ -480,15 +480,15 @@ footer ul.social_profiles li a:hover{
 footer ul.social_profiles .f a{
 	background-position: 0 0;
 }
-	
+
 footer ul.social_profiles .t a{
 	background-position: -41px 0;
 }
-	
+
 footer ul.social_profiles .be a{
 	background-position: -82px 0;
 }
-	
+
 footer ul.social_profiles .d a{
 	background-position: -123px 0;
 }
@@ -497,15 +497,15 @@ footer ul.social_profiles .d a{
 footer ul.social_profiles .f a:hover{
 	background-position: 0 0;
 }
-	
+
 footer ul.social_profiles .t a:hover{
 	background-position: -41px 0;
 }
-	
+
 footer ul.social_profiles .be a:hover{
 	background-position: -82px 0;
 }
-	
+
 footer ul.social_profiles .d a:hover{
 	background-position: -123px 0;
 }
