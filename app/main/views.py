@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, current_app, flash
-from ..models import Article, Tag, Menu, User, PlogInfo
+from ..models import Article, Tag, User, PlogInfo
 from .. import db
 from . import main
 from .forms import LoginForm
@@ -54,11 +54,8 @@ def login():
 		user = User.query.filter_by(email = form.email.data).first()
 		if user is not None and user.verify_password(form.password.data):
 			login_user(user, form.remember_me.data)
-			
 			return redirect(request.args.get('next') or url_for('.index'))
 		#flash('Invalid username or password.')
-	else:
-		print('????????????????????????????')
 	return render_template('login.html', highlight = 'Login', form = form, endpoint = '.login')
 
 
@@ -82,17 +79,6 @@ def article_tags(id):
 		endpoint = '.article_tags', id = id)
 
 
-@main.route('/article-menus/<int:id>')
-def article_menus(id):
-	page = request.args.get('page', 1, type = int)
-	pagination = Menu.query.get_or_404(id).menu_articles.order_by(
-		Article.create_time.desc()).paginate(
-		page, per_page = current_app.config['ARTICLES_PER_PAGE'], error_out = False)
-	articles = pagination.items
-	return render_template('index.html', articles = articles, pagination = pagination, 
-		endpoint = '.article_menus', id = id)
-
-
 @main.route('/article-users/<username>')
 def article_users(username):
 	pass
@@ -102,7 +88,7 @@ def article_details(id):
 	#default form, no follow(reply to)
 	#form = CommentForm(request.form, follow = -1)
 	article = Article.query.get_or_404(id)
-
+	
 	#comment has been submit and it is validate
 	#if form.validate_on_submit():
 		#???the constructor of Comment
@@ -138,5 +124,6 @@ def article_details(id):
 	#return render_template('article_details.html', User = User, article = article, 
 		#comments = comments, pagination = pagination, page = page, form = form, 
 		#endpoint = '.article_details', id = article.id)
-	return render_template('article_details.html', article = article, 
-		endpoint = '.article_details', id = id)
+	plog_info = PlogInfo.query.first()
+	return render_template('article-details.html', article = article, 
+		highlight = 'Article', plog_info = plog_info, endpoint = '.article_details', id = id)

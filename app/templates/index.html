@@ -1,49 +1,31 @@
 {% extends 'base-main.html' %}
 
 {% block content %}
-	<section class="main2 wrapper">
+	<section class="main wrapper">
 		<section class="content">
-			<article>
-				<div class="article_image">
-					<a href="#">
-						<img src="{{ url_for('static', filename='img/pic4.jpg') }}" alt="" title="">
-					</a>
-				</div>
-				<div class="post">
-					<h1 class="title">
-						<a href="#">Duis aute irure dolor in henderit in voluptate.</a>
-					</h1>
-					
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		
+			{% for article in articles %}
+				<article>
+					<div class="article_image">
+						<a href="{{ url_for('main.article_details', id = article.id) }}">
+							<img src="{{ url_for('static', filename='img/pic4.jpg') }}" alt="" title="">
+						</a>
+					</div>
+					<div class="post">
+						<h1 class="title">
+							<a href="{{ url_for('main.article_details', id = article.id) }}">{{ article.title }}</a>
+						</h1>
+						
+						<p>{{ article.summary|safe }}</p>
 
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>
-
-					<a class="read_more" href="#">Continue Reading <i class="read_more_arrow"></i> </a>
-				</div>
-			</article>
-
-			<article>
-				<div class="article_image">
-					<a href="#">
-						<img src="{{ url_for('static', filename='img/pic5.jpg') }}" alt="" title="">
-					</a>
-				</div>
-				<div class="post">
-					<h1 class="title">
-						<a href="#">Duis aute irure dolor in henderit in voluptate.</a>
-					</h1>
-					
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>
-
-					<a class="read_more" href="#">Continue Reading <i class="read_more_arrow"></i> </a>
-				</div>
-			</article>
-		</section><!-- Content End -->
+						<a class="read_more" href="{{ url_for('main.article_details', id = article.id) }}">Continue Reading <i class="read_more_arrow"></i> </a>
+					</div>
+				</article>
+				<hr />
+			{% endfor %}
 
 		<nav class="pagination">
-			<a href="{{ url_for('.article') }}" class="next">More Articles<i></i></a>
+			<a href="{{ url_for('main.article') }}" class="next">More Articles<i></i></a>
 		</nav><!-- pagination End -->
 
 	</section>

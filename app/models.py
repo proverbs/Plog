@@ -14,7 +14,6 @@ class Article(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
-	menu_id = db.Column(db.Integer, db.ForeignKey('menus.id'))
 
 	title = db.Column(db.String(64), unique = True)
 	content = db.Column(db.Text)
@@ -45,6 +44,12 @@ class User(UserMixin, db.Model):
 	def verify_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
+	def modify(self, username, gravatar_hash, password):
+		self.username = username
+		self.gravatar_hash = gravatar_hash
+		self.password_hash = generate_password_hash(password)
+
+
 
 class Tag(db.Model):
 	__tablename__ = 'tags'
@@ -53,13 +58,6 @@ class Tag(db.Model):
 
 	tag_articles = db.relationship('Article', backref = 'article_tag', lazy = 'dynamic')
 
-
-class Menu(db.Model):
-	__tablename__ = 'menus'
-	id = db.Column(db.Integer, primary_key = True)
-	menu_name = db.Column(db.String(64), unique = True)
-
-	menu_articles = db.relationship('Article', backref = 'article_menu', lazy = 'dynamic')
 
 
 class PlogInfo(db.Model):

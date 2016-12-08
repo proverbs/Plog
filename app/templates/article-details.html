@@ -1,0 +1,24 @@
+{% extends 'base-main.html' %}
+
+{% block content %}
+	<section class="main2 wrapper">
+		<section class="content">
+
+			<article>
+				<div class="article_image">
+					<a href="{{ url_for('main.article_details', id = article.id) }}">
+						<img src="{{ url_for('static', filename='img/pic4.jpg') }}" alt="" title="">
+					</a>
+				</div>
+				<div class="post">
+					<h1 class="title">
+						<a href="{{ url_for('main.article_details', id = article.id) }}">{{ article.title }}</a>
+					</h1>
+					
+					{{ article.content|safe }}
+
+				</div>
+			</article>
+
+	</section>
+{% endblock %}

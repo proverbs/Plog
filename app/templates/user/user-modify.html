@@ -1,0 +1,27 @@
+{% extends 'user/base-user.html' %}
+
+{% block content %}
+	<div class="side-right">
+		<section class="widget">
+			<h3 class="widget-title">User Email:</h3>
+			<div class="textwidget">
+				<p>{{ current_user.email }}</p>
+			</div>
+		
+			<h3 class="widget-title">User Info.</h3>
+			<form class="search_widget" action="" method="post">
+				<!-- it is important, about CSRF -->
+				{{ form.hidden_tag() }}
+				<p>Username:</p> <p><input type="text" name="username" class="search-field" placeholder="Your username."/></p>
+				<br>
+				<p>Gravatar:</p> <p><input type="text" name="gravatar_hash" class="search-field" placeholder="Your garvatar hash."/></p>
+				<br>
+				<p>Password:</p> <p><input type="password" name="password" class="search-field" placeholder="Your password."/></p>
+				<br>
+				<div>
+					<input class="login-form log-btn" type="submit" value="Modify">
+				</div>
+			</form>
+		</section>
+	</div><!-- div(sidebar) End -->
+{% endblock %}

@@ -221,11 +221,53 @@ ul.main_nav li a:hover{
 	float: left;
 }
 
+.main2 .content-right{
+	width: 620px;
+	float: right;
+}
+
 .main2 .post{
 	width: 580px;
 	margin-left: 20px;
 	margin-top: 20px;
 	margin-bottom: 80px;
+}
+
+
+
+.side-right {
+	width: 680px;
+	height: 1000px;
+	float: right;
+	font-family: 'LatoRegular';
+}
+
+.side-right .widget{
+	margin-bottom: 80px;
+}
+
+.side-right .widget-title{
+	width: 540px;
+	padding: 17px 20px;
+	border-left: 3px #58c93a solid;
+	background: #f8f8f8;
+	margin-bottom: 20px;
+	font-family: 'LatoBold', 'Helvetica', arial;
+	font-weight: bold;
+	font-size: 16px;
+	color: #6c6969;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.side-right .textwidget p{
+	width: 540px;
+	padding: 0 20px;
+	font-family: 'LatoRegular', 'Helvetica', arial;
+	font-size: 16px;
+	color: #737373;
+	margin-bottom: 10px;
+	line-height: 20px;
 }
 
 
@@ -267,6 +309,19 @@ aside .textwidget p{
 
 .search_widget .search-field{
 	width: 240px;
+	height: 50px;
+	padding: 0 20px;
+	color: #828282;
+	font-family: 'LatoRegular', 'Helvetica', arial;
+	font-size: 12px;
+	letter-spacing: .5px;
+	outline: none;
+	border: 1px #e1e0e0 solid;
+}
+
+
+.search_widget .title-field{
+	width: 640px;
 	height: 50px;
 	padding: 0 20px;
 	color: #828282;

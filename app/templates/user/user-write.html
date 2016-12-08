@@ -1,0 +1,32 @@
+{% extends 'user/base-user.html' %}
+
+{% block script %}
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script>tinymce.init({ selector:'textarea'});</script>
+{% endblock %}
+
+{% block content %}
+	<div class="side-right">
+		<section class="widget">
+			<form class="search_widget" action="" method="post">
+				<!-- it is important, about CSRF -->
+				{{ form.hidden_tag() }}
+				<h3 class="widget-title">Title:</h3>
+				<p><input type="text" name="title" class="title-field" placeholder="Your article title."/></p>
+				<br>
+				<h3 class="widget-title">Author:</h3>
+				<p>{{ current_user.username }}</p>
+				<br>
+				<textarea name="content">Write your new article.</textarea>
+				<br>
+				<h3 class="widget-title">Tag:</h3>
+				<p><input type="text" name="tag" class="title-field" placeholder="Your tag."/></p>
+				<br>
+				<h3 class="widget-title">Summary:</h3>
+				<p><textarea name="summary" class="title-field">Write your summary of this article.</textarea></p>
+				<br>
+				<input class="login-form log-btn" type="submit" value="Submit">
+			</form>
+		</section>
+	</div>
+{% endblock %}

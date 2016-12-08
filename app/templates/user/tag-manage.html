@@ -1,0 +1,20 @@
+{% extends 'user/base-user.html' %}
+
+{% block content %}
+	<section class="content-right">
+		<article>
+			<div class="post">
+				<h1 class="title">
+					Welcome back, {{ current_user.username }}
+				</h1>
+
+				{% for tag in tags %}
+					<p><b>Tag{{ tag.id }}: </b>{{ tag.tag_name }}</p>
+				{% endfor %}
+
+				<a class="read_more" href="#">PENDING<i class="read_more_arrow"></i> </a>
+			</div>
+		</article>
+
+	</section><!-- Content End -->
+{% endblock %}
