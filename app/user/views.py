@@ -70,6 +70,14 @@ def write_article():
 		form = form, endpoint = '.write_article')
 	
 
+@user.route('/delete-article/<int:id>')
+@login_required
+def delete_article(id):
+	article = Article.query.filter_by(id = id).first()
+	db.session.delete(article)
+	db.session.commit()
+	return redirect(url_for('user.article_manage'))
+
 
 @user.route('/edit-about')
 @login_required

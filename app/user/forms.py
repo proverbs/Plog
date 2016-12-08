@@ -16,3 +16,5 @@ class ArticleForm(Form):
 	tag = StringField('Tag', validators=[DataRequired()])
 	summary = TextAreaField('Summary', validators=[DataRequired()])
 	submit = SubmitField('Submit')
+
+

@@ -9,7 +9,10 @@
 				</h1>
 
 				{% for article in articles %}
-					<p><b>Article{{ article.id }}: </b>{{ article.title }}</p>
+					<p>
+						<b>Article{{ article.id }}: </b>{{ article.title }}
+						<a class="read_more" href="{{ url_for('user.delete_article', id = article.id) }}">DEL<i class="read_more_arrow"></i> </a>
+					</p>
 				{% endfor %}
 
 				<a class="read_more" href="#">PENDING<i class="read_more_arrow"></i> </a>

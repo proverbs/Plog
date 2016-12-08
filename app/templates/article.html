@@ -1,73 +1,36 @@
 {% extends 'base-main.html' %}
 
 {% block content %}
-	<section class="main2 wrapper">
-		<section class="content">
+<section class="main wrapper">
+	<section class="content">
+
+		{% for article in articles %}
 			<article>
 				<div class="article_image">
-					<a href="#">
+					<a href="{{ url_for('main.article_details', id = article.id) }}">
 						<img src="{{ url_for('static', filename='img/pic4.jpg') }}" alt="" title="">
 					</a>
 				</div>
 				<div class="post">
 					<h1 class="title">
-						<a href="#">Duis aute irure dolor in henderit in voluptate.</a>
+						<a href="{{ url_for('main.article_details', id = article.id) }}">{{ article.title }}</a>
 					</h1>
-					
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>
+					<p>{{ article.summary|safe }}</p>
 
-					<a class="read_more" href="#">Continue Reading <i class="read_more_arrow"></i> </a>
+					<a class="read_more" href="{{ url_for('main.article_details', id = article.id) }}">Continue Reading <i class="read_more_arrow"></i> </a>
 				</div>
 			</article>
-
-			<article>
-				<div class="article_image">
-					<a href="#">
-						<img src="{{ url_for('static', filename='img/pic5.jpg') }}" alt="" title="">
-					</a>
-				</div>
-				<div class="post">
-					<h1 class="title">
-						<a href="#">Duis aute irure dolor in henderit in voluptate.</a>
-					</h1>
-					
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>
-
-					<a class="read_more" href="#">Continue Reading <i class="read_more_arrow"></i> </a>
-				</div>
-			</article>
-		</section><!-- Content End -->
-	
-		<aside class="sidebar">
-			<section class="widget">
-				<h3 class="widget-title">About Blogin.</h3>
-				<div class="textwidget">
-					<p>Duis aute irure dolor in rhenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-					<p>Excepteur sint occaecat sunt in culpa qui officia deserunt mollit anim id est laborum.</p>	
-				</div>
-			</section>
-
-			<section class="widget">
-				<h3 class="widget-title">Search.</h3>
-				<form class="search_widget">
-					<input type="text" id="search-field" class="search-field" placeholder="What are you looking for?"/>
-				</form>
-			</section>
-
-			<section class="widget">
-				<a href="#">
-					<img src="{{ url_for('static', filename='img/ads.jpg') }}" alt="" title="">
-				</a>
-			</section>
-		</aside><!-- aside(sidebar) End -->
+			<hr />
+		{% endfor %}
 
 		<nav class="pagination">
-			<a href="#" class="previous"><i></i>Previous</a>
-			<a href="#" class="next">Next<i></i></a>
+			{% if pagination.has_prev %}
+				<a href="{{ url_for(endpoint, page = pagination.page - 1) }}" class="previous"><i></i>Previous</a>
+			{% endif %}
+			{% if pagination.has_next %}
+				<a href="{{ url_for(endpoint, page = pagination.page + 1) }}" class="next">Next<i></i></a>
+			{% endif %}
 		</nav><!-- pagination End -->
 	</section><!-- Main2 End -->
 {% endblock %}

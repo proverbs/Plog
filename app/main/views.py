@@ -83,6 +83,7 @@ def article_tags(id):
 def article_users(username):
 	pass
 
+
 @main.route('/article-detials/<int:id>', methods = ['GET', 'POST'])
 def article_details(id):
 	#default form, no follow(reply to)
